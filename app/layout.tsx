@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider"
+import ThemeProvider from "@/components/theme-provider"
+import Header from "@/components/header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Header />
+          <main className="p-8">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

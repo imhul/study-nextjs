@@ -1,4 +1,13 @@
 import { getArticles } from "@/app/(server)/api";
+import Link from 'next/link'
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 interface Article {
     userId: number;
@@ -12,17 +21,29 @@ const BlogPage = async () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-4">Blog</h1>
+            <h1 className="text-3xl text-center font-bold mb-4">Blog</h1>
             <div className="space-y-4">
-                {articles.map((article: any) => (
-                    <div key={article.id} className="p-4 border rounded">
-                        <h2 className="text-xl font-semibold">{article.title}</h2>
-                        <p>{article.body}</p>
-                        <a href={`/blog/${article.id}`} className="text-blue-500 hover:underline">
-                            Read more
-                        </a>
-                    </div>
-                ))}
+                <div className="flex flex-row flex-wrap">
+                    {articles.map((article: Article) => (
+                        <div className="basis-1/3 p-8" key={article.id}>
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>{article.title}</CardTitle>
+                                    <CardAction>
+                                        <Link href={`/blog/${article.id}`}>
+                                            <Button variant="outline" type="button">
+                                                Read more
+                                            </Button>
+                                        </Link>
+                                    </CardAction>
+                                </CardHeader>
+                                <CardContent>
+                                    <p>{article.body}</p>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

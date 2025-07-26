@@ -6,9 +6,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import type { Post } from "@/lib/types";
+import type { Post, ArticlePageProps } from "@/lib/types";
 
-const Page = async (props: any) => {
+const Page = async (props: ArticlePageProps) => {
     const params = await props.params;
     const article: Post = await getArticleById(params.articleId);
     const comments = await getCommentsByArticleId(params.articleId);

@@ -5,3 +5,5 @@ export const API = {
     article: (id: string) => `${BASE_URL}/posts/${id}`,
     comments: (id: string) => `${BASE_URL}/posts/${id}/comments`,
 }
+
+export const itemsPerPage = 9;

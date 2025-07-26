@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import ThemeToggle from "@/components/ui/themeToggle";
+import ThemeToggle from "@/components/theme-toggle";
 import Menu from "@/components/menu";
 import Image from "next/image";
 

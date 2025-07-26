@@ -1,4 +1,4 @@
-export const config = {
+export const configuration = {
     menu: [
         {
             label: "Home",

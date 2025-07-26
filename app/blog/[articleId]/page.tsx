@@ -1,17 +1,17 @@
-import { getArticleById, getCommentsByArticleId } from "@/app/(server)/api";
+import { getArticles, getArticleById, getCommentsByArticleId } from "@/app/(server)/api";
 import {
     Card,
-    CardAction,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import type { Post } from "@/lib/types";
 
-const ArticlePage = async (props: any) => {
-    const article = await getArticleById(props.params.articleId);
-    const comments = await getCommentsByArticleId(props.params.articleId);
+const Page = async (props: any) => {
+    const params = await props.params;
+    const article: Post = await getArticleById(params.articleId);
+    const comments = await getCommentsByArticleId(params.articleId);
 
     return (
         <div>
@@ -35,4 +35,4 @@ const ArticlePage = async (props: any) => {
     )
 }
 
-export default ArticlePage
+export default Page

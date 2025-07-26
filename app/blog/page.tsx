@@ -8,23 +8,17 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
-interface Article {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-}
+import type { Post } from "@/lib/types";
 
 const BlogPage = async () => {
-    const articles: Article[] = await getArticles();
+    const articles: Post[] = await getArticles();
 
     return (
         <div>
             <h1 className="text-3xl text-center font-bold mb-4">Blog</h1>
             <div className="space-y-4">
                 <div className="flex flex-row flex-wrap">
-                    {articles.map((article: Article) => (
+                    {articles.map((article: Post) => (
                         <div className="basis-1/3 p-8" key={article.id}>
                             <Card>
                                 <CardHeader>

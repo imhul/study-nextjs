@@ -1,26 +1,40 @@
 "use client"
 
+import { useState } from 'react'
 import Link from 'next/link'
 import {
-    Menubar,
-    MenubarMenu,
-    MenubarTrigger,
-} from "@/components/ui/menubar"
-import { config } from "@/lib/config"
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuViewport,
+    NavigationMenuIndicator,
+} from "@/components/ui/navigation-menu"
+import { configuration } from "@/lib/configuration"
 
 function Menu() {
+    const [active, setActive] = useState(false)
+
     return (
-        <Menubar>
-            {config.menu.map((item, index) => (
-                <MenubarMenu key={index}>
-                    <MenubarTrigger>
-                        <Link href={item.url}>
-                            {item.label}
-                        </Link>
-                    </MenubarTrigger>
-                </MenubarMenu>
-            ))}
-        </Menubar>
+        <NavigationMenu>
+            <NavigationMenuList>
+                {configuration.menu.map((item, index) => (
+                    <NavigationMenuItem key={index}>
+                        <NavigationMenuLink asChild>
+                            <Link
+                                href={item.url}
+                                prefetch={active ? null : false}
+                                onMouseEnter={() => setActive(true)}
+                            >
+                                {item.label}
+                            </Link>
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                ))}
+                <NavigationMenuIndicator data-orientation="horizontal" />
+            </NavigationMenuList>
+            <NavigationMenuViewport />
+        </NavigationMenu>
     )
 }
 

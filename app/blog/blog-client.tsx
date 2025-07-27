@@ -23,10 +23,6 @@ const BlogClient = (props: BlogClientProps) => {
         toast.error("No articles found", {
             description: "Sorry, we couldn't find any articles. Try again later.",
         })
-    } else {
-        toast.success("Articles loaded successfully", {
-            description: "Here are the articles you requested.",
-        })
     }
 
     return (

@@ -1,12 +1,13 @@
 
 export interface Post {
-    userId: number;
+    userId?: number;
     id: number;
     title: string;
     body: string;
+    name?: string;
 }
 
-export interface Comment {
+export interface Comment extends Post {
     id: number;
     postId: number;
     name: string;
@@ -62,4 +63,15 @@ export interface ArticlePageProps {
 export interface GetArticlesResponse {
     articles: Post[];
     totalPages: number;
+}
+
+export type EditType = "post" | "comment";
+export type EditAction = "create" | "update" | "delete" | "patch";
+
+export interface EditorProps {
+    action: EditAction;
+    editType: EditType;
+    post?: Post;
+    comment?: Comment;
+    comments?: Comment[];
 }

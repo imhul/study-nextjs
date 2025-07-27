@@ -1,4 +1,6 @@
 import { API, itemsPerPage } from "./config";
+// types
+import type { Post, Comment } from "@/lib/types";
 
 export async function getArticles(page: number) {
     const response = await fetch(API.articles);
@@ -36,3 +38,32 @@ export async function getUsers() {
     }
     return response.json();
 }
+
+export async function patchPost(post: Post) {
+    const response = await fetch(API.article(post.id.toString()), {
+        method: "PATCH",
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify(post),
+    });
+    if (!response.ok) {
+        throw new Error("Failed to patch post");
+    }
+    return { ok: true };
+}
+
+export async function patchComment(postId: number, comments: Comment[]) {
+    const response = await fetch(API.comments(postId.toString()), {
+        method: "PUT",
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify(comments),
+    });
+    if (!response.ok) {
+        throw new Error("Failed to update comments");
+    }
+    return { ok: true };
+}
+

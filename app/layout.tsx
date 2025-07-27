@@ -1,9 +1,12 @@
-import type { ReactNode } from "react";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react"
+import type { Metadata } from "next"
+// components
+import { Geist, Geist_Mono } from "next/font/google"
 import ThemeProvider from "@/components/theme-provider"
-import Header from "@/components/header";
-import "./globals.css";
+import Header from "@/components/header"
+import { Toaster } from "@/components/ui/sonner"
+// styles
+import "./globals.css"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster closeButton richColors duration={4000} position="top-right" />
           <Header />
           <main className="p-8">
             {children}

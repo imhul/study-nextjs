@@ -1,11 +1,12 @@
 "use client"
 
 // types
-import type { Post, BlogClientProps } from "@/lib/types";
+import type { Post, BlogClientProps } from "@/lib/types"
 // components
+import { toast } from "sonner"
 import Link from 'next/link'
-import { Button } from "@/components/ui/button";
-import Paging from "@/components/paging";
+import { Button } from "@/components/ui/button"
+import Paging from "@/components/paging"
 import {
     Card,
     CardTitle,
@@ -17,6 +18,16 @@ import {
 
 const BlogClient = (props: BlogClientProps) => {
     const { articles, currentPage, totalPages } = props
+
+    if (!articles) {
+        toast.error("No articles found", {
+            description: "Sorry, we couldn't find any articles. Try again later.",
+        })
+    } else {
+        toast.success("Articles loaded successfully", {
+            description: "Here are the articles you requested.",
+        })
+    }
 
     return (
         <div>

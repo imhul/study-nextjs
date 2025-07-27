@@ -36,7 +36,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
       </PaginationItem>
     )
 
-    // Show first 1 or 2 or 3 pages
+    // Show first pages
     if (currentPage > 1) {
       const startPage = Math.max(2, currentPage - 1)
       const endPage = Math.min(totalPages - 1, currentPage + 1)

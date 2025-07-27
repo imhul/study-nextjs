@@ -1,12 +1,12 @@
-import { getArticles, getArticleById, getCommentsByArticleId } from "@/app/(server)/api";
+import { getArticleById, getCommentsByArticleId } from "@/app/(server)/api";
 import {
     Card,
+    CardTitle,
+    CardHeader,
     CardContent,
     CardDescription,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
-import type { Post, ArticlePageProps } from "@/lib/types";
+import type { Post, Comment, ArticlePageProps } from "@/lib/types";
 
 const Page = async (props: ArticlePageProps) => {
     const params = await props.params;
@@ -20,7 +20,7 @@ const Page = async (props: ArticlePageProps) => {
 
             <Card className="p-8">
                 <h2 className="text-2xl font-bold">Comments</h2>
-                {comments.map((comment: any) => (
+                {comments.map((comment: Comment) => (
                     <Card key={comment.id} className="mb-4">
                         <CardHeader>
                             <CardTitle>{comment.name}</CardTitle>

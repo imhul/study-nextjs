@@ -8,17 +8,15 @@ import { Button } from "@/components/ui/button";
 import Paging from "@/components/paging";
 import {
     Card,
-    CardAction,
-    CardContent,
-    CardHeader,
     CardTitle,
+    CardAction,
+    CardHeader,
+    CardContent,
+    CardDescription,
 } from "@/components/ui/card"
 
 const BlogClient = (props: BlogClientProps) => {
     const { articles, currentPage, totalPages } = props
-
-    console.info("BlogClient currentPage: ", currentPage);
-
 
     return (
         <div>
@@ -30,6 +28,9 @@ const BlogClient = (props: BlogClientProps) => {
                             <Card>
                                 <CardHeader>
                                     <CardTitle>{article.title}</CardTitle>
+                                    <CardDescription>
+                                        User {article.userId}
+                                    </CardDescription>
                                     <CardAction>
                                         <Link href={`/blog/${article.id}`}>
                                             <Button variant="outline" type="button">

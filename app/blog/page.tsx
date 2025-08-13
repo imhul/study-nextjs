@@ -3,20 +3,16 @@ import { getArticles } from "@/app/(server)/api";
 // components
 import BlogClient from "@/app/blog/blog-client";
 // types
-import type { BlogPageProps, GetArticlesResponse } from "@/lib/types";
+import type { BlogPageProps, Post } from "@/lib/types";
 
 const BlogPage = async (props: BlogPageProps) => {
-    const searchParams = await props.searchParams;
-    /* @next-codemod-ignore */
-    const page = Number(searchParams?.page ?? 1);
-    const { articles, totalPages }: GetArticlesResponse = await getArticles(page)
+    const articles: Post[] = await getArticles()
+    const searchParams = await props.searchParams
 
-    return (
-        <BlogClient
-            articles={articles}
-            currentPage={page}
-            totalPages={totalPages}
-        />
+    return articles ? (
+        <BlogClient articles={articles} searchParams={searchParams ?? { page: 1}} />
+    ) : (
+        <p>No articles found</p>
     )
 }
 

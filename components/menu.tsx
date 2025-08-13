@@ -10,6 +10,7 @@ import {
     NavigationMenuViewport,
     NavigationMenuIndicator,
 } from "@/components/ui/navigation-menu"
+// config
 import { configuration } from "@/lib/configuration"
 
 function Menu() {

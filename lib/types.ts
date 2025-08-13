@@ -52,19 +52,14 @@ export interface BlogPageProps {
 
 export interface BlogClientProps {
     articles: Post[];
-    currentPage: number;
-    totalPages: number;
+    searchParams?: { page?: string };
 }
 
 export interface ArticlePageProps {
     params: Promise<{ articleId: string }>;
 }
 
-export interface GetArticlesResponse {
-    articles: Post[];
-    totalPages: number;
-}
-
+export type SortType = "newest" | "oldest" | "asc" | "desc";
 export type EditType = "post" | "comment";
 export type EditAction = "create" | "update" | "delete" | "patch";
 

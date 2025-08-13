@@ -13,4 +13,26 @@ export const configuration = {
             url: "/blog",
         }
     ],
+    blogSortTypes: [
+        {
+            value: "newest",
+            label: "Newest",
+
+        },
+        {
+            value: "oldest",
+            label: "Oldest",
+
+        },
+        {
+            value: "asc",
+            label: "Title (A-Z)",
+
+        },
+        {
+            value: "desc",
+            label: "Title (Z-A)",
+
+        },
+    ],
 }

@@ -45,14 +45,10 @@ const BlogClient = (props: BlogClientProps) => {
     const [sortType, setSortType] = useState<SortType>(defaultSortType)
     const [sortedArticles, setSortedArticles] = useState<Post[]>(articles)
 
-    const getStartValue = () => {
-        const page = Number(searchParams?.page ?? 1)
-        if (typeof page === "number" && page !== 1) setCurrentPage(page)
-        return { page, start: (page - 1) * itemsPerPage }
-    }
-
     const sortArticles = () => {
-        const { start } = getStartValue()
+        const page = Number(searchParams?.page ?? 1)
+        setCurrentPage(page)
+        const start = (page - 1) * itemsPerPage
         const sorters: Record<SortType, (a: Post, b: Post) => number> = {
             newest: (a, b) => a.id - b.id,
             oldest: (a, b) => b.id - a.id,
@@ -65,10 +61,8 @@ const BlogClient = (props: BlogClientProps) => {
 
     // paging
     useEffect(() => {
-        const { start, page } = getStartValue()
-        if (!page) return
-        setTotalPages(Math.ceil(articles.length / itemsPerPage))
-        setSortedArticles(articles.slice(start, start + itemsPerPage))
+        if (totalPages === 1) setTotalPages(Math.ceil(articles.length / itemsPerPage))
+        setSortedArticles(sortArticles())
     }, [searchParams])
 
     // sotring

@@ -6,7 +6,7 @@ const headers = {
     'Content-type': 'application/json; charset=UTF-8',
 };
 
-const newError = (message: string) => {
+export const newError = (message: string) => {
     throw new Error("Failed to " + message);
 }
 

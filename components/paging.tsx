@@ -10,6 +10,7 @@ import {
   PaginationLink,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+// types
 import { PagingProps } from "@/lib/types"
 
 const Paging = ({ currentPage, totalPages }: PagingProps) => {
@@ -23,7 +24,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
   const renderPages = () => {
     const pages = []
 
-    // Always show Previous
+    // Previous
     pages.push(
       <PaginationItem key="prev">
         <PaginationPrevious
@@ -36,38 +37,59 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
       </PaginationItem>
     )
 
-    // Show first pages
-    if (currentPage > 1) {
-      const startPage = Math.max(2, currentPage - 1)
-      const endPage = Math.min(totalPages - 1, currentPage + 1)
+    // 1
+    pages.push(
+      <PaginationItem key={1}>
+        <PaginationLink
+          href="#"
+          className="px-4 py-2"
+          isActive={currentPage === 1}
+          onClick={() => onPageChange(1)}
+        >
+          1
+        </PaginationLink>
+      </PaginationItem>
+    )
 
-      for (let i = startPage; i <= endPage; i++) {
-        pages.push(
-          <PaginationItem key={i}>
-            <PaginationLink
-              href="#"
-              className="px-4 py-2"
-              isActive={currentPage === i}
-              onClick={() => onPageChange(i)}
-            >
-              {i}
-            </PaginationLink>
-          </PaginationItem>
-        )
-      }
-    }
-
-    // Show ellipsis if needed
-    if (currentPage > 4 || currentPage < totalPages - 3) {
+    // Left ellipsis
+    if (currentPage > 3) {
       pages.push(
-        <PaginationItem key="ellipsis">
+        <PaginationItem key="start-ellipsis">
           <PaginationEllipsis />
         </PaginationItem>
       )
     }
 
-    // Show last page if not near end
+    // Middle pages
+    const startPage = Math.max(2, currentPage - 1)
+    const endPage = Math.min(totalPages - 1, currentPage + 1)
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <PaginationItem key={i}>
+          <PaginationLink
+            href="#"
+            className="px-4 py-2"
+            isActive={currentPage === i}
+            onClick={() => onPageChange(i)}
+          >
+            {i}
+          </PaginationLink>
+        </PaginationItem>
+      )
+    }
+
+    // Right ellipsis
     if (currentPage < totalPages - 2) {
+      pages.push(
+        <PaginationItem key="end-ellipsis">
+          <PaginationEllipsis />
+        </PaginationItem>
+      )
+    }
+
+    // Last page
+    if (totalPages > 1) {
       pages.push(
         <PaginationItem key={totalPages}>
           <PaginationLink
@@ -82,7 +104,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
       )
     }
 
-    // Always show Next
+    // Next
     pages.push(
       <PaginationItem key="next">
         <PaginationNext

@@ -1,5 +1,5 @@
 // api
-import { getArticleById, getCommentsByArticleId } from "@/app/(server)/api";
+import { getArticleById, getCommentsByArticleId } from "@/app/(server)/api"
 // components
 import {
   Card,
@@ -8,17 +8,17 @@ import {
   CardFooter,
   CardContent,
   CardDescription,
-} from "@/components/ui/card";
-import Editor from "@/components/editor";
+} from "@/components/ui/card"
+import Editor from "@/components/editor"
 // types
-import type { Post, Comment, ArticlePageProps } from "@/lib/types";
+import type { Post, Comment, ArticlePageProps } from "@/lib/types"
 // utils
-import Toast from "@/components/toast";
+import Toast from "@/components/toast"
 
 const Page = async (props: ArticlePageProps) => {
-  const params = await props.params;
-  const article: Post = await getArticleById(params.articleId);
-  const comments = await getCommentsByArticleId(params.articleId);
+  const params = await props.params
+  const article: Post = await getArticleById(params.articleId)
+  const comments = await getCommentsByArticleId(params.articleId)
 
   return (
     <div>
@@ -55,7 +55,7 @@ const Page = async (props: ArticlePageProps) => {
         )}
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

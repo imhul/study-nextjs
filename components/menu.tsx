@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from "react"
+import Link from "next/link"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,12 +9,12 @@ import {
   NavigationMenuList,
   NavigationMenuViewport,
   NavigationMenuIndicator,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu"
 // config
-import { configuration } from "@/lib/configuration";
+import { configuration } from "@/lib/configuration"
 
 function Menu() {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(false)
 
   return (
     <NavigationMenu>
@@ -36,7 +36,7 @@ function Menu() {
       </NavigationMenuList>
       <NavigationMenuViewport />
     </NavigationMenu>
-  );
+  )
 }
 
-export default Menu;
+export default Menu

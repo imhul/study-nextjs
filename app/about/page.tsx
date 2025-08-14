@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 const AboutPage = () => {
   return (
@@ -8,7 +8,7 @@ const AboutPage = () => {
         <p className="text-gray-600">Learn more about our company and team.</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage

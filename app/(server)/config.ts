@@ -1,4 +1,4 @@
-const BASE_URL = "https://jsonplaceholder.typicode.com";
+const BASE_URL = "https://jsonplaceholder.typicode.com"
 
 export const API = {
   users: BASE_URL + "/users",
@@ -9,4 +9,4 @@ export const API = {
   userArticles: (userId: string) => `${BASE_URL}/users/${userId}/posts`,
   article: (id: string) => `${BASE_URL}/posts/${id}`,
   comments: (id: string) => `${BASE_URL}/posts/${id}/comments`,
-};
+}

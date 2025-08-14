@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
 import {
   Pagination,
   PaginationContent,
@@ -9,20 +9,20 @@ import {
   PaginationNext,
   PaginationLink,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/components/ui/pagination"
 // types
-import { PagingProps } from "@/lib/types";
+import { PagingProps } from "@/lib/types"
 
 const Paging = ({ currentPage, totalPages }: PagingProps) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const onPageChange = (page: number) => {
-    if (page < 1 || page > totalPages) return;
-    router.push(`?page=${page}`);
-  };
+    if (page < 1 || page > totalPages) return
+    router.push(`?page=${page}`)
+  }
 
   const renderPages = () => {
-    const pages = [];
+    const pages = []
 
     // Previous
     pages.push(
@@ -35,7 +35,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
           Previous
         </PaginationPrevious>
       </PaginationItem>,
-    );
+    )
 
     // 1
     pages.push(
@@ -49,7 +49,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
           1
         </PaginationLink>
       </PaginationItem>,
-    );
+    )
 
     // Left ellipsis
     if (currentPage > 3) {
@@ -57,12 +57,12 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
         <PaginationItem key="start-ellipsis">
           <PaginationEllipsis />
         </PaginationItem>,
-      );
+      )
     }
 
     // Middle pages
-    const startPage = Math.max(2, currentPage - 1);
-    const endPage = Math.min(totalPages - 1, currentPage + 1);
+    const startPage = Math.max(2, currentPage - 1)
+    const endPage = Math.min(totalPages - 1, currentPage + 1)
 
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
@@ -76,7 +76,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
             {i}
           </PaginationLink>
         </PaginationItem>,
-      );
+      )
     }
 
     // Right ellipsis
@@ -85,7 +85,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
         <PaginationItem key="end-ellipsis">
           <PaginationEllipsis />
         </PaginationItem>,
-      );
+      )
     }
 
     // Last page
@@ -101,7 +101,7 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
             {totalPages}
           </PaginationLink>
         </PaginationItem>,
-      );
+      )
     }
 
     // Next
@@ -115,16 +115,16 @@ const Paging = ({ currentPage, totalPages }: PagingProps) => {
           Next
         </PaginationNext>
       </PaginationItem>,
-    );
+    )
 
-    return pages;
-  };
+    return pages
+  }
 
   return (
     <Pagination>
       <PaginationContent>{renderPages()}</PaginationContent>
     </Pagination>
-  );
-};
+  )
+}
 
-export default Paging;
+export default Paging

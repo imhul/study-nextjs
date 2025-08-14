@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import ThemeToggle from "@/components/theme-toggle";
-import Menu from "@/components/menu";
-import Image from "next/image";
+import Link from "next/link"
+import ThemeToggle from "@/components/theme-toggle"
+import Menu from "@/components/menu"
+import Image from "next/image"
 
 const Header = () => {
   return (
@@ -21,7 +21,7 @@ const Header = () => {
       <Menu />
       <ThemeToggle />
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

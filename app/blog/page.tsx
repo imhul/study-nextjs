@@ -1,13 +1,13 @@
 // api
-import { getArticles } from "@/app/(server)/api";
+import { getArticles } from "@/app/(server)/api"
 // components
-import BlogClient from "@/app/blog/blog-client";
+import BlogClient from "@/app/blog/blog-client"
 // types
-import type { BlogPageProps, Post } from "@/lib/types";
+import type { BlogPageProps, Post } from "@/lib/types"
 
 const BlogPage = async (props: BlogPageProps) => {
-  const articles: Post[] = await getArticles();
-  const searchParams = await props.searchParams;
+  const articles: Post[] = await getArticles()
+  const searchParams = await props.searchParams
 
   return articles ? (
     <BlogClient
@@ -16,7 +16,7 @@ const BlogPage = async (props: BlogPageProps) => {
     />
   ) : (
     <p>No articles found</p>
-  );
-};
+  )
+}
 
-export default BlogPage;
+export default BlogPage

@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 // types
-import type { EditorProps, Post } from "@/lib/types";
+import type { EditorProps, Post } from "@/lib/types"
 // api
-import { patchPost, patchComment } from "@/app/(server)/api";
+import { patchPost, patchComment } from "@/app/(server)/api"
 // components
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Pencil } from "lucide-react";
+import { toast } from "sonner"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { Pencil } from "lucide-react"
 import {
   Drawer,
   DrawerClose,
@@ -22,7 +22,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/components/ui/drawer"
 import {
   Form,
   FormControl,
@@ -31,7 +31,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/form"
 
 const formSchema = z.object({
   body: z
@@ -42,39 +42,39 @@ const formSchema = z.object({
     .max(500, {
       message: "Text must be at most 500 characters.",
     }),
-});
+})
 
 export function Editor(props: EditorProps) {
-  const { editType, post, comment, comments } = props;
-  const [data, setData] = useState(editType === "post" ? post! : comment!);
-  const [isDirty, setIsDirty] = useState(false);
+  const { editType, post, comment, comments } = props
+  const [data, setData] = useState(editType === "post" ? post! : comment!)
+  const [isDirty, setIsDirty] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       body: data.body || "",
     },
-  });
+  })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsDirty(false);
-    if (values.body === data?.body) return;
+    setIsDirty(false)
+    if (values.body === data?.body) return
 
     setData((prev) => {
-      if (!prev) return prev;
+      if (!prev) return prev
       return {
         ...prev,
         body: values.body,
-      };
-    });
+      }
+    })
 
-    let result = { ok: false };
+    let result = { ok: false }
 
     if (editType === "post") {
       result = await patchPost({
         ...post,
         body: values.body,
-      } as Post);
+      } as Post)
     } else if (editType === "comment") {
       const updatedComments =
         comments!.map((c) => {
@@ -82,24 +82,24 @@ export function Editor(props: EditorProps) {
             return {
               ...c,
               body: values.body,
-            };
+            }
           }
-          return c;
-        }) || [];
-      result = await patchComment(comment!.postId, updatedComments);
+          return c
+        }) || []
+      result = await patchComment(comment!.postId, updatedComments)
     }
 
     if (!result.ok) {
       toast.error(`Failed to update ${editType} ${data?.id}`, {
         description:
           "Sorry, we couldn't submit your changes. Please try again later.",
-      });
+      })
     } else {
       toast.success(`${editType} ${data?.id} updated successfully`, {
         description: "Your changes have been saved.",
-      });
+      })
     }
-  };
+  }
 
   return (
     <Drawer>
@@ -165,7 +165,7 @@ export function Editor(props: EditorProps) {
         </div>
       </DrawerContent>
     </Drawer>
-  );
+  )
 }
 
-export default Editor;
+export default Editor

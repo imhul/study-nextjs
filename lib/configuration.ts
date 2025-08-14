@@ -31,4 +31,4 @@ export const configuration = {
       label: "Title (Z-A)",
     },
   ],
-};
+}

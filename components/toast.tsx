@@ -1,11 +1,11 @@
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 const Toast = () => {
-    toast.error("No article found", {
-        description: "Sorry, we couldn't find the article you were looking for.",
-    })
+  toast.error("No article found", {
+    description: "Sorry, we couldn't find the article you were looking for.",
+  });
 
-    return null
-}
+  return null;
+};
 
-export default Toast
+export default Toast;

@@ -6,14 +6,17 @@ import BlogClient from "@/app/blog/blog-client";
 import type { BlogPageProps, Post } from "@/lib/types";
 
 const BlogPage = async (props: BlogPageProps) => {
-    const articles: Post[] = await getArticles()
-    const searchParams = await props.searchParams
+  const articles: Post[] = await getArticles();
+  const searchParams = await props.searchParams;
 
-    return articles ? (
-        <BlogClient articles={articles} searchParams={searchParams ?? { page: 1}} />
-    ) : (
-        <p>No articles found</p>
-    )
-}
+  return articles ? (
+    <BlogClient
+      articles={articles}
+      searchParams={searchParams ?? { page: 1 }}
+    />
+  ) : (
+    <p>No articles found</p>
+  );
+};
 
-export default BlogPage
+export default BlogPage;

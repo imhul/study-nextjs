@@ -1,5 +1,5 @@
-'use client'
+"use client";
 
-import Loader from '@/components/loader'
+import Loader from "@/components/loader";
 
-export default () => <Loader />
+export default () => <Loader />;
